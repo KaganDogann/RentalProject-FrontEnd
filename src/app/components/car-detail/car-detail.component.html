@@ -1,0 +1,51 @@
+<app-car-image></app-car-image>
+<table class="table table-dark table-borderless table-striped">
+  <thead>
+    <tr>
+      <th>Araba Adı</th>
+      <th>Markası</th>
+      <th>Rengi</th>
+      <th>Açıklama</th>
+      <th>Günlük Ücret</th>
+      <th>Kirala</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let car of cars">
+      <td>{{ car.modelName }}</td>
+      <td>{{ car.brandName }}</td>
+      <td>{{ car.colorName }}</td>
+      <td>{{ car.description }}</td>
+      <td>{{ car.dailyPrice }}</td>
+      <td>
+        <button
+        data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+          data-bs-toggle="modal"
+          data-bs-target="#staticBackdrop"
+          class="btn btn-success"
+        >
+          Aracı Kirala
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      
+      <div class="modal-body">
+        <app-rental-add></app-rental-add>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        
+      </div>
+    </div>
+  </div>
+</div>

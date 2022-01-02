@@ -1,0 +1,16 @@
+<div class="mb-3">
+  <label for="filterText" class="form-label">Marka ara</label>
+  <input type="text" class="form-control" id="filterText" placeholder="Aramak istediniz marka">
+</div>
+
+
+
+
+<ul  class="list-group">
+    <li (click)="clearCurrentBrand()" routerLink="/cars" [class]="getAllBrandClass()"> Tüm araçlar </li>
+    <li (click)="setCurrentBrand(brand)" 
+    routerLink="/cars/brand/{{brand.brandId}}" 
+    *ngFor="let brand of brands" 
+    [class]="getCurrentBrandClass(brand)">
+    {{brand.brandName}}</li>
+  </ul>

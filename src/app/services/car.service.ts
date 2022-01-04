@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Car } from '../models/car';
 
 import { CarDetails } from '../models/carDetails';
 import { Color } from '../models/color';
@@ -43,5 +44,8 @@ export class CarService {
   
   add(rental:Rental):Observable<ResponseModel>{
     return this.httpClient.post<ResponseModel>(this.apiUrl+"rental/add",rental)
+  }
+  carAdd(car:Car):Observable<ResponseModel>{
+    return this.httpClient.post<ResponseModel>(this.apiUrl+"cars/add",car)
   }
 }

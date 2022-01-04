@@ -19,8 +19,7 @@ import { CarService } from 'src/app/services/car.service';
 export class RentalAddComponent implements OnInit {
   rentalAddForm: FormGroup;
   carDetail:CarDetails[];
-  rentDate: Date;
-  returnDate: Date;
+  minDate:Date= new Date();
   constructor(
     private formBuilder: FormBuilder,
     private carService: CarService,
@@ -29,6 +28,7 @@ export class RentalAddComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    console.log(this.minDate);
     this.createRentalAddForm();
     this.activatedRoute.params.subscribe(params=>{
       if (params["carId"]) {
@@ -50,6 +50,7 @@ export class RentalAddComponent implements OnInit {
       
       rentDate: ['', Validators.required],
       returnDate: ['', Validators.required],
+      
     });
   }
 
@@ -80,7 +81,5 @@ export class RentalAddComponent implements OnInit {
       this.toastrService.warning('Formunuz Eksik', 'Dikkat');
     }
   }
-
-  
 
 }

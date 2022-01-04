@@ -15,8 +15,8 @@
         <td>{{rentalDetail.colorName}}</td>
         <td>{{rentalDetail.customerName}} {{rentalDetail.customerLastname}}</td>
         <td>{{rentalDetail.modelName}}</td>
-        <td>{{rentalDetail.rentDate}}</td>
-        <td>{{rentalDetail.returnDate}}</td>
+        <td>{{rentalDetail.rentDate |date :"medium"}}</td>
+        <td>{{rentalDetail.returnDate |date :"medium"}}</td>
     </tr>
 </table>
 

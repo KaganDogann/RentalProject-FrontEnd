@@ -1,10 +1,13 @@
 <div class="card text-center mt-5" >
   <div class="card-header" style="background-color: black; color: #77d0d9">
-    Ödeme
+    Ödeme 
   </div>
 </div>
 <br>
 <div class="col-12 mt-3">
+  <div>
+    araç Kiralama tarihi:{{modelOfRental[0]?.rentDate}}--{{modelOfRental[0]?.returnDate}}
+  </div>
   <input
     class="form-control"
     type="text"
@@ -60,5 +63,7 @@
 <br>
 <br>
 <div class="col-12 d-flex justify-content-end">
-    <button type="submit" class="btn btn-dark" style="color:#77d0d9" >Ödeme Yap</button>
+    <button type="submit" class="btn btn-dark" style="color:#77d0d9" >Ödeme Yap </button>
   </div>
+
+  

@@ -35,6 +35,7 @@ export class CarComponent implements OnInit {
 
     this.getBrands();
     this.getColors();
+    
 
     this.activatedRoute.params.subscribe(params=>{
       if(params["colorId"] && params["brandId"]){

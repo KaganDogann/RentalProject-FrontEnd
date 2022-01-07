@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
+import { LocalstorageService } from 'src/app/services/localstorage.service';
 import { UserService } from 'src/app/services/user.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -13,11 +16,14 @@ import { UserService } from 'src/app/services/user.service';
 export class LoginComponent implements OnInit {
   loginForm:FormGroup;
   userEmail:string;
-  user1:User;
+  @Input() user1:User;
+  
   constructor(private formBuilder:FormBuilder,
     private authService:AuthService,
     private toastrService:ToastrService,
-    private userService:UserService) { }
+    private userService:UserService,
+    private router:Router,
+    private localStorage:LocalstorageService) { }
 
   ngOnInit(): void {
     this.createLoginForm()
@@ -36,15 +42,11 @@ export class LoginComponent implements OnInit {
      // console.log(this.loginForm.value);
       let loginModel=Object.assign({},this.loginForm.value)
       this.authService.login(loginModel).subscribe(response=>{
-        this.toastrService.info(response.message)
-        localStorage.setItem("token",response.data.token)
-        debugger;
-        let UserEmail=this.loginForm.value.email
-        this.userService.getByUserEmail(UserEmail).subscribe(data=>{
-          this.user1=data.data
-        })
-        
-        console.log(this.user1)
+        this.localStorage.saveToken(response.data.token)
+        this.authService.decodedTokenKey=this.authService.decodedToken(response.data.token);
+        console.log(this.authService.getUserInfo()); 
+        this.router.navigate(["/"]);
+        this.toastrService.info("Giriş Yapıldı")
         
       },responseError=>{
         //console.log(responseError);
@@ -53,12 +55,5 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  email(){
-    console.log("email e girdi")
-    if (this.authService.isAuthenticated()) {
-      console.log("email:")
-    console.log(this.loginForm.value)
-    }
-    
-  }
+  
 }

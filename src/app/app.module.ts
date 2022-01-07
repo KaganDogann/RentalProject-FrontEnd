@@ -25,7 +25,13 @@ import { ColorAddComponent } from './components/color-add/color-add.component';
 import { LoginComponent } from './components/login/login.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { RegisterComponent } from './components/register/register.component';
+import { JwtModule } from "@auth0/angular-jwt";
 
+
+
+export function tokenGetter() {
+  return localStorage.getItem("access_token");
+}
 
 @NgModule({
   declarations: [
@@ -55,7 +61,14 @@ import { RegisterComponent } from './components/register/register.component';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
-       positionClass:"toast-bottom-right"})
+       positionClass:"toast-bottom-right"
+      }),
+      JwtModule.forRoot({
+        config: {
+          tokenGetter: tokenGetter,
+          allowedDomains: ["http://localhost:4200/"]
+        },
+      }),
   ],
   providers: [
     {provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true}

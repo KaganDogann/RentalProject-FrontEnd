@@ -5,9 +5,7 @@
 </div>
 <br>
 <div class="col-12 mt-3">
-  <div>
-    araç Kiralama tarihi:{{modelOfRental[0]?.rentDate}}--{{modelOfRental[0]?.returnDate}}
-  </div>
+  
   <input
     class="form-control"
     type="text"
@@ -63,7 +61,7 @@
 <br>
 <br>
 <div class="col-12 d-flex justify-content-end">
-    <button type="submit" class="btn btn-dark" style="color:#77d0d9" >Ödeme Yap </button>
+    <button type="submit" class="btn btn-dark" style="color:#77d0d9" (click)="add()" >Ödeme Yap </button>
   </div>
 
   

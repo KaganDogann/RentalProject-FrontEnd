@@ -39,13 +39,11 @@
       </div>
 
       <div class="card-footer">
-        <button class="btn btn-fill btn-outline-success" (click)="add()" >
+        <button class="btn btn-fill btn-outline-success" (click)="isCarAvaible()" >
           Kirala
         </button>
-        <button routerLink="/cars/carDetails/4/payment" class="btn btn-fill btn-outline-success"  >
-          Ödemeye geç <app-payment  *ngFor="let model of modelOfRental"
-          [modelOfRental]="modelOfRental"
-          ></app-payment>
+        <button data-bs-dismiss="modal" (click)="isCarAvaible()" class="btn btn-fill btn-outline-success" >
+          Ödemeye Geç
         </button>
       </div>
     </div>
@@ -57,5 +55,5 @@
   Ödemeye geç <app-payment  *ngFor="let model of modelOfRental"
   [modelOfRental]="modelOfRental"
   ></app-payment>
-</button>
- -->
+</button> -->
+

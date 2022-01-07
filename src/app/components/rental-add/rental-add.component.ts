@@ -6,11 +6,12 @@ import {
   FormControl,
   Validators,
 } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CarDetails } from 'src/app/models/carDetails';
 import { Rental } from 'src/app/models/rental';
 import { CarService } from 'src/app/services/car.service';
+import { PaymentService } from 'src/app/services/payment.service';
 import { RentalService } from 'src/app/services/rental.service';
 @Component({
   selector: 'app-rental-add',
@@ -27,7 +28,9 @@ export class RentalAddComponent implements OnInit {
     private carService: CarService,
     private toastrService: ToastrService,
     private activatedRoute: ActivatedRoute,
-    private rentalService: RentalService
+    private rentalService: RentalService,
+    private paymentService:PaymentService,
+    private router:Router
   ) {}
 
   ngOnInit(): void {
@@ -92,11 +95,18 @@ export class RentalAddComponent implements OnInit {
         .subscribe((response) => {
           console.log(response);
           this.toastrService.success(response.message, 'Başarılı');
+          this.sendData();
+          this.router.navigate(["/cars/payment",this.carDetail[0].carId])
+
         },
         (responseError)=>{
           this.toastrService.error(responseError.error)
         }
         );
     } 
+  }
+  sendData(){
+    this.modelOfRental=Object.assign({},this.rentalAddForm.value);
+    this.paymentService.updateData(this.modelOfRental)
   }
 }

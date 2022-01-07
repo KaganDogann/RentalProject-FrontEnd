@@ -42,9 +42,7 @@ export class CarService {
     return this.httpClient.get<ListResponseModel<CarDetails>>(newPath);
   }
   
-  add(rental:Rental):Observable<ResponseModel>{
-    return this.httpClient.post<ResponseModel>(this.apiUrl+"rental/add",rental)
-  }
+  
   carAdd(car:Car):Observable<ResponseModel>{
     return this.httpClient.post<ResponseModel>(this.apiUrl+"cars/add",car)
   }

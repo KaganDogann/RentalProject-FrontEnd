@@ -21,8 +21,8 @@ import { RentalService } from 'src/app/services/rental.service';
 export class RentalAddComponent implements OnInit {
   rentalAddForm: FormGroup;
   carDetail: CarDetails[];
-  minDate: Date = new Date();
-  modelOfRental:Rental[]=[];
+  minDate = new Date();
+  modelOfRental:Rental;
   constructor(
     private formBuilder: FormBuilder,
     private carService: CarService,
@@ -35,6 +35,7 @@ export class RentalAddComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.modelOfRental)
+    //this.totalPrice()
     //console.log(this.minDate);
     this.createRentalAddForm();
     this.activatedRoute.params.subscribe((params) => {
@@ -60,40 +61,39 @@ export class RentalAddComponent implements OnInit {
     });
   }
 
-  add() {
-    if (this.rentalAddForm.valid) {
-      let rentalModel: Rental = Object.assign({}, this.rentalAddForm.value);
-      rentalModel.carId = this.carDetail[0].carId;
-      //console.log(rentalModel);
-      this.modelOfRental[0]=rentalModel;
-      console.log("rentaladd modelofrental",this.modelOfRental[0])
-      /* this.carService.add(rentalModel).subscribe(
-        (response) => {
-          console.log(response);
-          this.toastrService.success(response.message, 'Başarılı');
-        },
-        (responseError) => {
-          if (responseError.error.Errors.length > 0) {
-            for (let i = 0; i < responseError.error.Errors.length; i++) {
-              this.toastrService.error(
-                responseError.error.Errors[i].ErrorMessage,
-                'Doğrulama hatası'
-              );
-            }
-          }
-        }
-      ); */
-    } /* else {
-      this.toastrService.warning('Formunuz Eksik', 'Dikkat');
-    } */
-  }
+  // // add() {
+  // //   if (this.rentalAddForm.valid) {
+  // //     let rentalModel: Rental = Object.assign({}, this.rentalAddForm.value);
+  // //     rentalModel.carId = this.carDetail[0].carId;
+  // //     //console.log(rentalModel);
+  // //     this.modelOfRental[0]=rentalModel;
+  // //     console.log("rentaladd modelofrental",this.modelOfRental[0])
+  // //      this.carService.add(rentalModel).subscribe(
+  // //       (response) => {
+  // //         console.log(response);
+  // //         this.toastrService.success(response.message, 'Başarılı');
+  // //       },
+  // //       (responseError) => {
+  // //         if (responseError.error.Errors.length > 0) {
+  // //           for (let i = 0; i < responseError.error.Errors.length; i++) {
+  // //             this.toastrService.error(
+  // //               responseError.error.Errors[i].ErrorMessage,
+  // //               'Doğrulama hatası'
+  // //             );
+  // //           }
+  // //         }
+  // //       }
+  // //     ); */
+  // //   } /* else {
+  //     this.toastrService.warning('Formunuz Eksik', 'Dikkat');
+  //   } 
+  // }
 
   isCarAvaible() {
     if (this.rentalAddForm.valid) {
       this.rentalService
         .isCarAvaible(this.carDetail[0].carId)
         .subscribe((response) => {
-          console.log(response);
           this.toastrService.success(response.message, 'Başarılı');
           this.sendData();
           this.router.navigate(["/cars/payment",this.carDetail[0].carId])
@@ -106,7 +106,15 @@ export class RentalAddComponent implements OnInit {
     } 
   }
   sendData(){
-    this.modelOfRental=Object.assign({},this.rentalAddForm.value);
+    this.modelOfRental=Object.assign({},this.rentalAddForm.value);// buradan aldığım veriyi başka componentlarda da kullanmak için bu servisi yazdık
+    //console.log(this.modelOfRental)
     this.paymentService.updateData(this.modelOfRental)
   }
+   /* totalPrice(){
+     let rentdate=this.modelOfRental.rentDate
+     let returndate=this.modelOfRental.returnDate //Refactor
+     let rentDatee = new Date(this.modelOfRental.rentDate).getTime()
+     let returnDatee= new Date(this.modelOfRental.returnDate).getTime();
+     console.log(rentDatee)
+   } */
 }

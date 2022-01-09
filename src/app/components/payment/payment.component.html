@@ -1,6 +1,14 @@
 <div class="card text-center mt-5" >
-  <div class="card-header" style="background-color: black; color: #77d0d9">
+  <div class="card-header" >
     Ödeme 
+  </div>
+  <div class="table">
+    <tr>
+      <th>Kiralanacak Gün sayısı: {{rentalDay}}</th>
+    </tr>
+    <tr>
+      <th>Ödenecek Tutar: {{totalAmountInfo}}  </th>
+    </tr>
   </div>
 </div>
 <br>
@@ -61,7 +69,8 @@
 <br>
 <br>
 <div class="col-12 d-flex justify-content-end">
-    <button type="submit" class="btn btn-dark" style="color:#77d0d9" (click)="add()" >Ödeme Yap </button>
+    <button type="submit" class="btn btn-outline-success"  (click)="add()" >Ödeme Yap </button> 
   </div>
 
-  
+  <!-- style="background-color: black; color: #77d0d9"
+  style="color:#77d0d9" -->

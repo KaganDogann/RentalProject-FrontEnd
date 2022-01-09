@@ -4,8 +4,10 @@ import { ToastrService } from 'ngx-toastr';
 import { Brand } from 'src/app/models/brand';
 
 import { CarDetails } from 'src/app/models/carDetails';
+import { CarImage } from 'src/app/models/carImage';
 import { Color } from 'src/app/models/color';
 import { BrandService } from 'src/app/services/brand.service';
+import { CarImageService } from 'src/app/services/car-image.service';
 
 import { CarService } from 'src/app/services/car.service';
 import { ColorService } from 'src/app/services/color.service';
@@ -17,6 +19,9 @@ import { ColorService } from 'src/app/services/color.service';
 })
 export class CarComponent implements OnInit {
   cars: CarDetails[]=[];
+  carImages:CarImage[]=[];
+  baseUrl="https://localhost:44306/Uploads/Images/"
+  imageOfPath:string;
   filterText="";
   brands: Brand[] = [];
   colors: Color[] = [];
@@ -29,7 +34,8 @@ export class CarComponent implements OnInit {
     private activatedRoute:ActivatedRoute,
     private brandService:BrandService,
     private colorService:ColorService,
-    private toastrService:ToastrService ) { }
+    private toastrService:ToastrService,
+    private carImageService:CarImageService ) { }
 
   ngOnInit(): void {
 
@@ -101,5 +107,15 @@ export class CarComponent implements OnInit {
   setFilter(){
     this.toastrService.success("filtre uygulandı")
     console.log("aaaabb")
+  }
+
+  image(carId:number){
+    this.carImageService.getCarImagesByCarId(carId).subscribe(response=>{
+      const imagePath=response.data[0].imagePath
+      this.imageOfPath= this.baseUrl+imagePath;
+      console.log(this.imageOfPath)
+    })
+    return this.imageOfPath
+    
   }
 }

@@ -52,7 +52,7 @@
   </div> -->
   
   
-<br>
+<!-- <br>
 <table class="table">
     <thead>
         <tr>
@@ -78,4 +78,40 @@
         </tr>
     </tbody>
     
-</table>
+</table> -->
+
+
+<div class="row mt-4" style="margin-left: 1%;">
+
+  <div *ngFor="let car of cars |filterPipe:filterText"  class="card mt-2 mr-2"
+     style="width: 18rem;margin-right: 10px;">
+
+    <img *ngIf="car.imagePath" [src]="baseUrl+car.imagePath" class="card-img-top" 
+      style="object-fit: cover;" width="100" height="50%" alt="...">
+
+    <img *ngIf="!car.imagePath" [src]="baseUrl+'DefaultImage.jpg'" class="card-img-top" 
+      style="object-fit: cover;" width="100" height="50%" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{ car.modelName }}</h5>
+
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"> Model yılı: {{ car.modelYear }}</li>
+      <li class="list-group-item">Renk adı: {{ car.colorName }} </li>
+      <li class="list-group-item">Marka adı: {{ car.brandName }}</li>
+      <li class="list-group-item">Model adı: {{ car.modelName }}</li>
+      <li class="list-group-item">Günlük fiyat: {{ car.dailyPrice }}</li>
+      <li class="list-group-item">Araç açıklaması: {{ car.description}}</li>
+
+    </ul>
+    <div class="card-body">
+      <div class="row">
+        <button type="button" 
+          class="btn btn-outline-success" routerLink="/cars/carDetails/{{car.carId}}" >Araba Detay</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- [src]="imageUrl+'/images/mslogo.png'"  *ngIf="car.imagePath" -->

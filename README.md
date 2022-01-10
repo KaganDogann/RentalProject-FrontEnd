@@ -12,6 +12,7 @@
 <li> Toastr Service</li>
 
 
+<img src="https://github.com/KaganDogann/RentalProject-FrontEnd/blob/master/Görseller/Ekran%20görüntüsü%202022-01-10%20160322.jpg">
 
 
 

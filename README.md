@@ -11,6 +11,11 @@
 <li> Service </li>
 <li> Toastr Service</li>
 <br>
+<br>
+<p>Arayüzde değişiklikler yapmayı düşünüyorum, HTML ve CSS çalışıyorum bittiğinde son haliyle görselleri yenileyeceğim</p>
+<br>
+<br>
+<br>
 <h1>Screenshots
 <img src="https://github.com/KaganDogann/RentalProject-FrontEnd/blob/master/Görseller/Ekran%20görüntüsü%202022-01-10%20160322.jpg"><br>
 <img src="https://github.com/KaganDogann/RentalProject-FrontEnd/blob/master/Görseller/Ekran%20görüntüsü%202022-01-10%20160343.jpg"><br>

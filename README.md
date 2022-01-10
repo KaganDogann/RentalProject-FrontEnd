@@ -5,7 +5,7 @@
 <li> TypeScript </li>
 <li> Bootstrap 5 </li>
 <li> Jquery </li>
-# FrontendTechniques
+<h3> FrontendTechniques </h3>
 <li> Pipe </li>
 <li> JWT </li>
 <li> Service </li>

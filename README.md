@@ -7,7 +7,7 @@
 <li> Jquery </li>
 <h3> FrontendTechniques </h3>
 <li> Pipe </li>
-<li> JWT </li>
+<li> JWT (@auth0/angular-jwt) </li>
 <li> Service </li>
 <li> Toastr Service</li>
 <br>

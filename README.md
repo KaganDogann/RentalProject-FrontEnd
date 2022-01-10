@@ -1,7 +1,7 @@
 # RentalProjectFrontend
 
 # Tecnologies
--Angular 11
+<li> Angular 11</li>
 -TypeScript
 -Bootstrap 5
 -Jquery
